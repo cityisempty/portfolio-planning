@@ -8,7 +8,6 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             margin: 0;
@@ -21,8 +20,81 @@
     <div id="root"></div>
     
     <script>
-        const { createElement: h, useState } = React;
-        const { ChevronLeft, ChevronRight, Camera, Layout, Palette } = lucide;
+        const { createElement: e, useState } = React;
+
+        // Lucide图标组件的简单实现
+        const ChevronLeft = () => e('svg', {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+        }, e('polyline', { points: "15 18 9 12 15 6" }));
+
+        const ChevronRight = () => e('svg', {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+        }, e('polyline', { points: "9 18 15 12 9 6" }));
+
+        const Camera = () => e('svg', {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+        }, 
+            e('path', { d: "M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" }),
+            e('circle', { cx: "12", cy: "13", r: "3" })
+        );
+
+        const Layout = () => e('svg', {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+        }, 
+            e('rect', { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }),
+            e('line', { x1: "3", y1: "9", x2: "21", y2: "9" }),
+            e('line', { x1: "9", y1: "21", x2: "9", y2: "9" })
+        );
+
+        const Palette = () => e('svg', {
+            xmlns: "http://www.w3.org/2000/svg",
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            strokeWidth: "2",
+            strokeLinecap: "round",
+            strokeLinejoin: "round"
+        }, 
+            e('circle', { cx: "13.5", cy: "6.5", r: ".5" }),
+            e('circle', { cx: "17.5", cy: "10.5", r: ".5" }),
+            e('circle', { cx: "8.5", cy: "7.5", r: ".5" }),
+            e('circle', { cx: "6.5", cy: "12.5", r: ".5" }),
+            e('path', { d: "M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" })
+        );
 
         const PortfolioPlanning = () => {
             const [currentPage, setCurrentPage] = useState(0);
@@ -336,131 +408,138 @@
 
             const currentContent = pages[currentPage];
 
-            return h('div', { className: 'min-h-screen bg-gradient-to-br from-amber-50 to-stone-100 p-8' },
-                h('div', { className: 'max-w-6xl mx-auto' },
-                    h('div', { className: 'bg-stone-800 text-amber-50 p-6 rounded-t-lg' },
-                        h('h1', { className: 'text-3xl font-bold mb-2 flex items-center gap-3' },
-                            h(Camera, { className: 'w-8 h-8' }),
+            return e('div', { className: 'min-h-screen bg-gradient-to-br from-amber-50 to-stone-100 p-8' },
+                e('div', { className: 'max-w-6xl mx-auto' },
+                    // 头部
+                    e('div', { className: 'bg-stone-800 text-amber-50 p-6 rounded-t-lg' },
+                        e('h1', { className: 'text-3xl font-bold mb-2 flex items-center gap-3' },
+                            e(Camera, { key: 'camera' }),
                             '《时光印记》古建筑摄影作品集策划方案'
                         ),
-                        h('p', { className: 'text-amber-200' }, 'A4尺寸 (210×297mm) · 10页完整策划')
+                        e('p', { className: 'text-amber-200' }, 'A4尺寸 (210×297mm) · 10页完整策划')
                     ),
-                    h('div', { className: 'bg-white p-6 shadow-md border-x-4 border-amber-600' },
-                        h('h2', { className: 'text-xl font-bold mb-4 flex items-center gap-2 text-stone-800' },
-                            h(Palette, { className: 'w-6 h-6' }),
+                    
+                    // 设计系统
+                    e('div', { className: 'bg-white p-6 shadow-md border-x-4 border-amber-600' },
+                        e('h2', { className: 'text-xl font-bold mb-4 flex items-center gap-2 text-stone-800' },
+                            e(Palette, { key: 'palette' }),
                             '整体设计系统'
                         ),
-                        h('div', { className: 'grid md:grid-cols-3 gap-4' },
-                            h('div', {},
-                                h('h3', { className: 'font-semibold text-stone-700 mb-2' }, '色彩方案'),
-                                h('div', { className: 'space-y-1 text-sm' },
-                                    ...designSystem.colorPalette.map((color, i) =>
-                                        h('div', { key: i, className: 'flex items-center gap-2' },
-                                            h('div', {
+                        e('div', { className: 'grid md:grid-cols-3 gap-4' },
+                            e('div', { key: 'colors' },
+                                e('h3', { className: 'font-semibold text-stone-700 mb-2' }, '色彩方案'),
+                                e('div', { className: 'space-y-1 text-sm' },
+                                    designSystem.colorPalette.map((color, i) =>
+                                        e('div', { key: i, className: 'flex items-center gap-2' },
+                                            e('div', {
                                                 className: 'w-4 h-4 rounded border border-stone-300',
-                                                style: { backgroundColor: color.split('#')[1] ? '#' + color.split('#')[1] : '#666' }
+                                                style: { backgroundColor: color.includes('#') ? '#' + color.split('#')[1] : '#666' }
                                             }),
-                                            h('span', { className: 'text-stone-600' }, color)
+                                            e('span', { className: 'text-stone-600' }, color)
                                         )
                                     )
                                 )
                             ),
-                            h('div', {},
-                                h('h3', { className: 'font-semibold text-stone-700 mb-2' }, '字体系统'),
-                                h('ul', { className: 'space-y-1 text-sm text-stone-600' },
-                                    ...designSystem.typography.map((font, i) =>
-                                        h('li', { key: i }, '• ' + font)
+                            e('div', { key: 'fonts' },
+                                e('h3', { className: 'font-semibold text-stone-700 mb-2' }, '字体系统'),
+                                e('ul', { className: 'space-y-1 text-sm text-stone-600' },
+                                    designSystem.typography.map((font, i) =>
+                                        e('li', { key: i }, '• ' + font)
                                     )
                                 )
                             ),
-                            h('div', {},
-                                h('h3', { className: 'font-semibold text-stone-700 mb-2' }, '版式规范'),
-                                h('ul', { className: 'space-y-1 text-sm text-stone-600' },
-                                    ...designSystem.layout.map((rule, i) =>
-                                        h('li', { key: i }, '• ' + rule)
+                            e('div', { key: 'layout' },
+                                e('h3', { className: 'font-semibold text-stone-700 mb-2' }, '版式规范'),
+                                e('ul', { className: 'space-y-1 text-sm text-stone-600' },
+                                    designSystem.layout.map((rule, i) =>
+                                        e('li', { key: i }, '• ' + rule)
                                     )
                                 )
                             )
                         )
                     ),
-                    h('div', { className: 'bg-amber-600 text-white p-4 flex items-center justify-between' },
-                        h('button', {
+                    
+                    // 导航
+                    e('div', { className: 'bg-amber-600 text-white p-4 flex items-center justify-between' },
+                        e('button', {
                             onClick: prevPage,
                             disabled: currentPage === 0,
                             className: 'flex items-center gap-2 px-4 py-2 bg-stone-700 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-stone-600 transition'
                         },
-                            h(ChevronLeft, { className: 'w-5 h-5' }),
+                            e(ChevronLeft, { key: 'left' }),
                             '上一页'
                         ),
-                        h('div', { className: 'flex items-center gap-3' },
-                            h(Layout, { className: 'w-5 h-5' }),
-                            h('span', { className: 'font-semibold' },
+                        e('div', { className: 'flex items-center gap-3' },
+                            e(Layout, { key: 'layout-icon' }),
+                            e('span', { className: 'font-semibold' },
                                 `第 ${currentPage + 1} 页 / 共 ${pages.length} 页`
                             )
                         ),
-                        h('button', {
+                        e('button', {
                             onClick: nextPage,
                             disabled: currentPage === pages.length - 1,
                             className: 'flex items-center gap-2 px-4 py-2 bg-stone-700 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-stone-600 transition'
                         },
                             '下一页',
-                            h(ChevronRight, { className: 'w-5 h-5' })
+                            e(ChevronRight, { key: 'right' })
                         )
                     ),
-                    h('div', { className: 'bg-white p-8 shadow-lg rounded-b-lg' },
-                        h('div', { className: 'mb-6 pb-4 border-b-2 border-amber-600' },
-                            h('h2', { className: 'text-2xl font-bold text-stone-800 mb-2' }, currentContent.title),
-                            h('div', { className: 'flex items-center gap-4 text-sm text-stone-600' },
-                                h('span', { className: 'bg-amber-100 px-3 py-1 rounded' },
+                    
+                    // 内容区
+                    e('div', { className: 'bg-white p-8 shadow-lg rounded-b-lg' },
+                        e('div', { className: 'mb-6 pb-4 border-b-2 border-amber-600' },
+                            e('h2', { className: 'text-2xl font-bold text-stone-800 mb-2' }, currentContent.title),
+                            e('div', { className: 'flex items-center gap-4 text-sm text-stone-600' },
+                                e('span', { className: 'bg-amber-100 px-3 py-1 rounded' },
                                     '布局方式: ' + currentContent.layout
                                 ),
-                                h('span', { className: 'bg-stone-100 px-3 py-1 rounded' },
+                                e('span', { className: 'bg-stone-100 px-3 py-1 rounded' },
                                     '图片数量: ' + currentContent.content.photos.length + '张'
                                 )
                             )
                         ),
-                        h('div', { className: 'space-y-6' },
-                            h('div', { className: 'bg-stone-50 p-4 rounded-lg' },
-                                h('h3', { className: 'font-semibold text-stone-800 mb-3' }, '设计风格'),
-                                h('p', { className: 'text-stone-700 mb-3' }, currentContent.content.design),
-                                h('h4', { className: 'font-semibold text-stone-700 mb-2' }, '版式元素:'),
-                                h('ul', { className: 'grid md:grid-cols-2 gap-2' },
-                                    ...currentContent.content.elements.map((element, i) =>
-                                        h('li', { key: i, className: 'text-sm text-stone-600 flex items-start gap-2' },
-                                            h('span', { className: 'text-amber-600 font-bold' }, '•'),
-                                            h('span', {}, element)
+                        e('div', { className: 'space-y-6' },
+                            e('div', { className: 'bg-stone-50 p-4 rounded-lg' },
+                                e('h3', { className: 'font-semibold text-stone-800 mb-3' }, '设计风格'),
+                                e('p', { className: 'text-stone-700 mb-3' }, currentContent.content.design),
+                                e('h4', { className: 'font-semibold text-stone-700 mb-2' }, '版式元素:'),
+                                e('ul', { className: 'grid md:grid-cols-2 gap-2' },
+                                    currentContent.content.elements.map((element, i) =>
+                                        e('li', { key: i, className: 'text-sm text-stone-600 flex items-start gap-2' },
+                                            e('span', { className: 'text-amber-600 font-bold' }, '•'),
+                                            e('span', {}, element)
                                         )
                                     )
                                 )
                             ),
-                            h('div', {},
-                                h('h3', { className: 'font-semibold text-stone-800 mb-4 text-lg' }, '📷 图片方案'),
-                                h('div', { className: 'space-y-4' },
-                                    ...currentContent.content.photos.map((photo, i) =>
-                                        h('div', { key: i, className: 'border-l-4 border-amber-600 bg-gradient-to-r from-amber-50 to-white p-5 rounded-r-lg shadow-sm hover:shadow-md transition' },
-                                            h('div', { className: 'flex items-start justify-between mb-3' },
-                                                h('h4', { className: 'text-lg font-bold text-stone-800' }, photo.name),
-                                                h('span', { className: 'text-xs bg-stone-700 text-white px-2 py-1 rounded' }, '图' + (i + 1))
+                            e('div', {},
+                                e('h3', { className: 'font-semibold text-stone-800 mb-4 text-lg' }, '📷 图片方案'),
+                                e('div', { className: 'space-y-4' },
+                                    currentContent.content.photos.map((photo, i) =>
+                                        e('div', { key: i, className: 'border-l-4 border-amber-600 bg-gradient-to-r from-amber-50 to-white p-5 rounded-r-lg shadow-sm hover:shadow-md transition' },
+                                            e('div', { className: 'flex items-start justify-between mb-3' },
+                                                e('h4', { className: 'text-lg font-bold text-stone-800' }, photo.name),
+                                                e('span', { className: 'text-xs bg-stone-700 text-white px-2 py-1 rounded' }, '图' + (i + 1))
                                             ),
-                                            h('div', { className: 'grid md:grid-cols-2 gap-4' },
-                                                h('div', { className: 'space-y-2' },
-                                                    h('div', {},
-                                                        h('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '拍摄内容'),
-                                                        h('p', { className: 'text-stone-700' }, photo.content)
+                                            e('div', { className: 'grid md:grid-cols-2 gap-4' },
+                                                e('div', { className: 'space-y-2' },
+                                                    e('div', {},
+                                                        e('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '拍摄内容'),
+                                                        e('p', { className: 'text-stone-700' }, photo.content)
                                                     ),
-                                                    h('div', {},
-                                                        h('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '拍摄角度'),
-                                                        h('p', { className: 'text-stone-700' }, photo.angle)
+                                                    e('div', {},
+                                                        e('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '拍摄角度'),
+                                                        e('p', { className: 'text-stone-700' }, photo.angle)
                                                     )
                                                 ),
-                                                h('div', { className: 'space-y-2' },
-                                                    h('div', {},
-                                                        h('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '创作立意'),
-                                                        h('p', { className: 'text-stone-700 italic' }, '"' + photo.concept + '"')
+                                                e('div', { className: 'space-y-2' },
+                                                    e('div', {},
+                                                        e('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '创作立意'),
+                                                        e('p', { className: 'text-stone-700 italic' }, '"' + photo.concept + '"')
                                                     ),
-                                                    h('div', {},
-                                                        h('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '版式规格'),
-                                                        h('p', { className: 'text-stone-600 text-sm' }, photo.specs)
+                                                    e('div', {},
+                                                        e('span', { className: 'text-xs font-semibold text-amber-700 uppercase' }, '版式规格'),
+                                                        e('p', { className: 'text-stone-600 text-sm' }, photo.specs)
                                                     )
                                                 )
                                             )
@@ -470,10 +549,12 @@
                             )
                         )
                     ),
-                    h('div', { className: 'mt-6 bg-stone-800 text-amber-50 p-4 rounded-lg text-center' },
-                        h('p', { className: 'text-sm' },
+                    
+                    // 底部统计
+                    e('div', { className: 'mt-6 bg-stone-800 text-amber-50 p-4 rounded-lg text-center' },
+                        e('p', { className: 'text-sm' },
                             '总计图片: ',
-                            h('span', { className: 'font-bold text-amber-300' },
+                            e('span', { className: 'font-bold text-amber-300' },
                                 pages.reduce((sum, page) => sum + page.content.photos.length, 0) + '张'
                             ),
                             ' · 覆盖6大主题 · 完整叙事结构'
@@ -483,7 +564,8 @@
             );
         };
 
-        ReactDOM.render(React.createElement(PortfolioPlanning), document.getElementById('root'));
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(e(PortfolioPlanning));
     </script>
 </body>
 </html>
